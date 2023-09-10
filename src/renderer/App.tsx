@@ -1,4 +1,4 @@
-import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import icon from '../../assets/icon.svg';
 import './App.css';
 
@@ -39,11 +39,16 @@ function Hello() {
   );
 }
 
+function Display() {
+  return <div>hello</div>;
+}
+
 export default function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Hello />} />
+        <Route path="/display" element={<Display />} />
       </Routes>
     </Router>
   );

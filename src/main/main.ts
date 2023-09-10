@@ -24,6 +24,7 @@ class AppUpdater {
 }
 
 let mainWindow: BrowserWindow | null = null;
+let displayWindows: BrowserWindow[] = [];
 
 ipcMain.on('ipc-example', async (event, arg) => {
   const msgTemplate = (pingPong: string) => `IPC test: ${pingPong}`;
@@ -81,7 +82,7 @@ const createWindow = async () => {
     },
   });
 
-  mainWindow.loadURL(resolveHtmlPath('index.html'));
+  mainWindow.loadURL(resolveHtmlPath('index.html', 'display'));
 
   mainWindow.on('ready-to-show', () => {
     if (!mainWindow) {
@@ -113,6 +114,71 @@ const createWindow = async () => {
 };
 
 /**
+ *
+ * @param x the x starting position of the window
+ * @param y the y starting position of the window
+ * @param width the width of the window
+ * @param height the height of the window
+ * @param displayLocation a string indicating what screen is to be rendered, example: cdu/1 or capt_inner
+ */
+const createDisplayWindow = async (
+  x: number,
+  y: number,
+  width: number,
+  height: number,
+  displayLocation: string
+) => {
+  if (isDebug) {
+    await installExtensions();
+  }
+
+  const RESOURCES_PATH = app.isPackaged
+    ? path.join(process.resourcesPath, 'assets')
+    : path.join(__dirname, '../../assets');
+
+  const getAssetPath = (...paths: string[]): string => {
+    return path.join(RESOURCES_PATH, ...paths);
+  };
+
+  const newDisplayWindow = new BrowserWindow({
+    show: false,
+    x,
+    y,
+    width,
+    height,
+    frame: false,
+    icon: getAssetPath('icon.png'),
+    webPreferences: {
+      preload: app.isPackaged
+        ? path.join(__dirname, 'preload.js')
+        : path.join(__dirname, '../../.erb/dll/preload.js'),
+    },
+  });
+
+  newDisplayWindow.loadURL(resolveHtmlPath('index.html', displayLocation));
+
+  // newDisplayWindow.on('ready-to-show', () => {
+  //   if (!newDisplayWindow) {
+  //     throw new Error('"mainWindow" is not defined');
+  //   }
+  //   // if (process.env.START_MINIMIZED) {
+  //   //   newDisplayWindow.minimize();
+  //   // } else {
+  //   //   newDisplayWindow.show();
+  //   // }
+  // });
+
+  // Open urls in the user's browser
+  newDisplayWindow.webContents.setWindowOpenHandler((edata) => {
+    shell.openExternal(edata.url);
+    return { action: 'deny' };
+  });
+
+  // Add the window to the displaywindows so we can work with it
+  displayWindows.push(newDisplayWindow);
+};
+
+/**
  * Add event listeners...
  */
 
@@ -128,6 +194,7 @@ app
   .whenReady()
   .then(() => {
     createWindow();
+    createDisplayWindow(50, 50, 800, 660, 'cdu/1');
     app.on('activate', () => {
       // On macOS it's common to re-create a window in the app when the
       // dock icon is clicked and there are no other windows open.
