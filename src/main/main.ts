@@ -82,7 +82,7 @@ const createWindow = async () => {
     },
   });
 
-  mainWindow.loadURL(resolveHtmlPath('index.html', 'display'));
+  mainWindow.loadURL(resolveHtmlPath('index.html'));
 
   mainWindow.on('ready-to-show', () => {
     if (!mainWindow) {
@@ -157,16 +157,16 @@ const createDisplayWindow = async (
 
   newDisplayWindow.loadURL(resolveHtmlPath('index.html', displayLocation));
 
-  // newDisplayWindow.on('ready-to-show', () => {
-  //   if (!newDisplayWindow) {
-  //     throw new Error('"mainWindow" is not defined');
-  //   }
-  //   // if (process.env.START_MINIMIZED) {
-  //   //   newDisplayWindow.minimize();
-  //   // } else {
-  //   //   newDisplayWindow.show();
-  //   // }
-  // });
+  newDisplayWindow.on('ready-to-show', () => {
+    if (!newDisplayWindow) {
+      throw new Error('"mainWindow" is not defined');
+    }
+    if (process.env.START_MINIMIZED) {
+      newDisplayWindow.minimize();
+    } else {
+      newDisplayWindow.show();
+    }
+  });
 
   // Open urls in the user's browser
   newDisplayWindow.webContents.setWindowOpenHandler((edata) => {

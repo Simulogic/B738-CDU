@@ -1,6 +1,9 @@
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import icon from '../../assets/icon.svg';
 import './App.css';
+import DisplayUnit from './displays/DisplayUnit';
+import CDU from './displays/CDU';
+import DisplayWrapper from './DisplayWrapper';
 
 function Hello() {
   return (
@@ -39,16 +42,27 @@ function Hello() {
   );
 }
 
-function Display() {
-  return <div>hello</div>;
-}
-
 export default function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Hello />} />
-        <Route path="/display" element={<Display />} />
+        <Route
+          path="/display/:location"
+          element={
+            <DisplayWrapper>
+              <DisplayUnit location={location} />
+            </DisplayWrapper>
+          }
+        />
+        <Route
+          path="/cdu/:location"
+          element={
+            <DisplayWrapper>
+              <CDU location={location} />
+            </DisplayWrapper>
+          }
+        />
       </Routes>
     </Router>
   );
