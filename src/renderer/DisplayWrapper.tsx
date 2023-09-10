@@ -7,7 +7,7 @@ interface DisplayWrapperProps {
 // TODO FIX THIS SHIT. IT NO WORKIE
 
 export default function DisplayWrapper({ children }: DisplayWrapperProps) {
-  let i = 0;
+  // let i = 0;
 
   // const handleUIEvent = (e: UIEvent<HTMLDivElement>) => {
   //   // Do something
@@ -16,7 +16,7 @@ export default function DisplayWrapper({ children }: DisplayWrapperProps) {
   // };
 
   const handleScroll = (e: Event) => {
-    i += 1;
+    // i += 1;
     // eslint-disable-next-line no-console
     console.log(e);
   };
@@ -24,10 +24,5 @@ export default function DisplayWrapper({ children }: DisplayWrapperProps) {
   window.addEventListener('onclick', handleScroll);
 
   // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-  return (
-    <div>
-      {children}
-      {i}
-    </div>
-  );
+  return <div>{children}</div>;
 }
