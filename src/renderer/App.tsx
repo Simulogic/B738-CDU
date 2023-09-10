@@ -51,7 +51,7 @@ export default function App() {
           path="/display/:location"
           element={
             <DisplayWrapper>
-              <DisplayUnit location={location} />
+              <DisplayUnit />
             </DisplayWrapper>
           }
         />
@@ -59,7 +59,7 @@ export default function App() {
           path="/cdu/:location"
           element={
             <DisplayWrapper>
-              <CDU location={location} />
+              <CDU />
             </DisplayWrapper>
           }
         />

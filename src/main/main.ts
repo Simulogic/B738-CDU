@@ -24,6 +24,7 @@ class AppUpdater {
 }
 
 let mainWindow: BrowserWindow | null = null;
+// eslint-disable-next-line prefer-const
 let displayWindows: BrowserWindow[] = [];
 
 ipcMain.on('ipc-example', async (event, arg) => {

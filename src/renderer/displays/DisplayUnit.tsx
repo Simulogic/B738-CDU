@@ -1,9 +1,8 @@
-interface DisplayUnitProps {
-  location: string;
-}
+import { useParams } from 'react-router-dom';
 
-export default function DisplayUnit(props: DisplayUnitProps) {
-  const { location } = props;
+export default function DisplayUnit() {
+  const params = useParams();
+  const { location } = params;
   switch (location) {
     // Lets check firstly what display location is being requested
     case 'capt_outer':
