@@ -399,3 +399,5 @@ FodyWeavers.xsd
 
 #Electron-builder output
 /dist_electron
+.erb/dll/renderer.dev.dll.js
+.erb/dll/renderer.json
