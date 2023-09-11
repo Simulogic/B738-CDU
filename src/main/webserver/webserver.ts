@@ -21,7 +21,8 @@ app.post('/update/cdu', (req, res) => {
 
 app.post('/update/cdu/:location', (req, res) => {
   let data: Record<string, any> = {};
-  data[req.params.location] = req.body.data;
+  data[req.params.location] = JSON.parse(req.body.data);
+  console.log(data);
   updateDisplayData('update/cdu', data);
   res.send(req.body.data);
 });

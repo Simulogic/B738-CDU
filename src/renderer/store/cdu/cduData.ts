@@ -30,7 +30,8 @@ export const cduDataSlice = createSlice({
 
     parseScreenData: (state, action: PayloadAction<any>) => {
       // Loop over all the keys. That way we can set the data for each individual key
-      let data = JSON.parse(action.payload) as CDUDisplayDataSet;
+      // let data = JSON.parse(action.payload) as CDUDisplayDataSet;
+      let data = action.payload as CDUDisplayDataSet;
 
       let keys = Object.keys(data);
 
