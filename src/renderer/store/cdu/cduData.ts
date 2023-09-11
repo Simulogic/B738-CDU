@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import sampleData from './defaultData/cduDefault';
+import sampleData from '../defaultData/cduDefault';
 
 export type CDUCharacter = {
   S: string;
@@ -27,10 +27,24 @@ export const cduDataSlice = createSlice({
         state[key] = data;
       });
     },
+
+    parseScreenData: (state, action: PayloadAction<any>) => {
+      // Loop over all the keys. That way we can set the data for each individual key
+      let data = JSON.parse(action.payload) as CDUDisplayDataSet;
+
+      let keys = Object.keys(data);
+
+      console.log(data, keys);
+
+      keys.forEach((key) => {
+        const dataSet = data[key];
+        state[key] = dataSet;
+      });
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { updateScreens } = cduDataSlice.actions;
+export const { updateScreens, parseScreenData } = cduDataSlice.actions;
 
 export default cduDataSlice.reducer;

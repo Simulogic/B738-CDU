@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import cduDataReducer from './cduData';
+import cduDataReducer from './cdu/cduData';
 // ...
 
 export const store = configureStore({

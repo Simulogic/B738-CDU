@@ -1,9 +1,9 @@
 // import { useParams } from 'react-router-dom';
 import './CDU.css';
 import { RootState } from 'renderer/store';
-import { CDUCharacter, CDUDisplayData } from 'renderer/store/cduData';
+import { CDUCharacter, CDUDisplayData } from 'renderer/store/cdu/cduData';
 import { useAppSelector } from '../store/hooks';
-import parseCDUData from 'renderer/data/cdu/parseCDUData';
+import { receiveCDUDataPackage } from 'renderer/store/cdu/cduDataListener';
 
 export default function CDU() {
   // const params = useParams();
@@ -11,12 +11,7 @@ export default function CDU() {
 
   const cduData = useAppSelector((state: RootState) => state.cduData);
 
-  // Here we subscribe to the cdu updates from the main application
-  window.electron.ipcRenderer.on('update/cdu', (arg) => {
-    // eslint-disable-next-line no-console
-    console.log(arg);
-    parseCDUData(arg);
-  });
+  console.log(cduData);
 
   return (
     <div className="text-3xl bg-black">{CDURenderer(cduData['left'])}</div>
