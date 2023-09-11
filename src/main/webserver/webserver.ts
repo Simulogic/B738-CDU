@@ -19,4 +19,11 @@ app.post('/update/cdu', (req, res) => {
   res.send(req.body.data);
 });
 
+app.post('/update/cdu/:location', (req, res) => {
+  let data: Record<string, any> = {};
+  data[req.params.location] = req.body.data;
+  updateDisplayData('update/cdu', data);
+  res.send(req.body.data);
+});
+
 app.listen(8430);
