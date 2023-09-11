@@ -4,6 +4,8 @@ import './App.css';
 import DisplayUnit from './displays/DisplayUnit';
 import CDU from './displays/CDU';
 import DisplayWrapper from './DisplayWrapper';
+import Control from './control/Control';
+import Settings from './control/Settings';
 
 function Hello() {
   return (
@@ -46,7 +48,8 @@ export default function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Hello />} />
+        <Route path="/" element={<Control />} />
+        <Route path="/settings" element={<Settings />} />
         <Route
           path="/display/:location"
           element={

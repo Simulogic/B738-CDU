@@ -77,6 +77,8 @@ const createWindow = async () => {
     show: false,
     width: 1024,
     height: 728,
+    title: '737 Displays',
+
     icon: getAssetPath('icon.png'),
     webPreferences: {
       preload: app.isPackaged
@@ -150,6 +152,7 @@ const createDisplayWindow = async (
     width,
     height,
     frame: false,
+    title: `737 ${displayLocation} display`,
     icon: getAssetPath('icon.png'),
     webPreferences: {
       preload: app.isPackaged
