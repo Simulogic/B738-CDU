@@ -14,6 +14,8 @@ import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
+import './webserver/webserver';
+import { Channels } from './preload';
 
 class AppUpdater {
   constructor() {
@@ -201,5 +203,20 @@ app
       // dock icon is clicked and there are no other windows open.
       if (mainWindow === null) createWindow();
     });
+
+    ipcMain.emit('ipc-example', 'testie');
   })
   .catch(console.log);
+
+/**
+ * Sends an IPC event with the specified event along with the data provided
+ * @param event The event channel to transmit on
+ * @param data
+ */
+export function updateDisplayData(event: Channels, data: any) {
+  mainWindow?.webContents.send(event, data);
+
+  displayWindows.forEach((win) => {
+    win.webContents.send(event, data);
+  });
+}
