@@ -4,4 +4,12 @@
   height: 100%;
   background-color: black;
   transition-duration: 1000ms;
+  font-family: 'PMDG';
+}
+
+@font-face {
+  font-family: 'PMDG';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/assets/fonts/PMDG_NG3_DU_A.ttf');
 }

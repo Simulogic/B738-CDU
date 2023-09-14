@@ -190,23 +190,18 @@ const airspeedTextBoxRenderer = (speed: number) => {
       // xml:space="preserve"
       // transform="scale(0.26458333)"
       x="46"
-      y="173"
+      y="178"
       width="100"
       id="text24"
       textAnchor="right"
       key={speed}
       style={{
         //   shapeInside: 'url(#rect24)',
-        fill: '#000000',
-        fillOpacity: '0.451327',
-        fontFamily: 'monospace',
+        fill: '#FFFFFF',
+        fontFamily: 'PMDG',
         fontStretch: 'expanded',
         fontSize: '1.8em',
         textAlign: 'right',
-        stroke: '#ffffff',
-        strokeWidth: '1.88976',
-        strokeDasharray: 'none',
-        strokeOpacity: '1',
         textAnchor: 'end',
       }}
     >
