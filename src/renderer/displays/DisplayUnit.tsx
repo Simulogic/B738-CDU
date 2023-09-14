@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom';
+import ISFD from './ISFD/ISFD';
 
 export default function DisplayUnit() {
   const params = useParams();
@@ -17,6 +18,8 @@ export default function DisplayUnit() {
       return <div>Eicas Upper</div>;
     case 'eicas_lower':
       return <div>Eicas Lower</div>;
+    case 'isfd':
+      return ISFD();
     default:
       break;
   }

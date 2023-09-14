@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import cduDataReducer from './cdu/cduData';
+import isfdDataReducer from './displays/ISFDData';
 // ...
 
 export const store = configureStore({
   reducer: {
     cduData: cduDataReducer,
+    ISFDData: isfdDataReducer,
   },
 });
 

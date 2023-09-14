@@ -200,7 +200,8 @@ app
   .whenReady()
   .then(() => {
     createWindow();
-    createDisplayWindow(50, 50, 800, 660, 'cdu/1');
+    createDisplayWindow(50, 50, 800, 660, 'display/isfd');
+    createDisplayWindow(10, 50, 800, 660, 'cdu/1');
     app.on('activate', () => {
       // On macOS it's common to re-create a window in the app when the
       // dock icon is clicked and there are no other windows open.

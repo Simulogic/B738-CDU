@@ -28,7 +28,7 @@ export const cduDataSlice = createSlice({
       });
     },
 
-    parseScreenData: (state, action: PayloadAction<any>) => {
+    parseCDUScreenData: (state, action: PayloadAction<any>) => {
       // Loop over all the keys. That way we can set the data for each individual key
       // let data = JSON.parse(action.payload) as CDUDisplayDataSet;
       let data = action.payload as CDUDisplayDataSet;
@@ -46,6 +46,6 @@ export const cduDataSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { updateScreens, parseScreenData } = cduDataSlice.actions;
+export const { updateScreens, parseCDUScreenData } = cduDataSlice.actions;
 
 export default cduDataSlice.reducer;

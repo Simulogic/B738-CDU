@@ -77,13 +77,13 @@ const configuration: webpack.Configuration = {
       //   ],
       //   include: /\.module\.s?(c|a)ss$/,
       // },
-      // {
-      //   test: /\.s?css$/,
-      //   use: ['style-loader', 'css-loader'],
-      //   exclude: /\.module\.s?(c|a)ss$/,
-      // },
       {
-        test: /\.css$/,
+        test: /\.scss$/,
+        use: ['style-loader', 'css-loader'],
+        exclude: /\.module\.s?(c|a)ss$/,
+      },
+      {
+        test: /\.s?css$/,
         include: [webpackPaths.srcRendererPath],
         use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
